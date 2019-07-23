@@ -198,8 +198,9 @@ class Snake extends SnakeComponent {
       if (collisionPoint != null) {
         body.add(head.clone());
       } else {
-        body.add(SnakeJoint(Offset(0, offset.dy), head.direction));
-        body.add(SnakeJoint(Offset(overflowX, offset.dy), head.direction));
+        body
+          ..add(SnakeJoint(Offset(0, offset.dy), head.direction))
+          ..add(SnakeJoint(Offset(overflowX, offset.dy), head.direction));
       }
     } else if (offset.dx < 0) {
       final overflowX = offset.dx;
@@ -214,10 +215,10 @@ class Snake extends SnakeComponent {
       if (collisionPoint != null) {
         body.add(head.clone());
       } else {
-        body.add(
-            SnakeJoint(Offset(canvasSize.width, offset.dy), head.direction));
-        body.add(SnakeJoint(
-            Offset(canvasSize.width + overflowX, offset.dy), head.direction));
+        body
+          ..add(SnakeJoint(Offset(canvasSize.width, offset.dy), head.direction))
+          ..add(SnakeJoint(
+              Offset(canvasSize.width + overflowX, offset.dy), head.direction));
       }
     } else if (offset.dy > canvasSize.height) {
       final overflowY = offset.dy - canvasSize.height;
@@ -230,8 +231,9 @@ class Snake extends SnakeComponent {
       if (collisionPoint != null) {
         body.add(head.clone());
       } else {
-        body.add(SnakeJoint(Offset(offset.dx, 0), head.direction));
-        body.add(SnakeJoint(Offset(offset.dx, overflowY), head.direction));
+        body
+          ..add(SnakeJoint(Offset(offset.dx, 0), head.direction))
+          ..add(SnakeJoint(Offset(offset.dx, overflowY), head.direction));
       }
     } else if (offset.dy < 0) {
       final overflowY = offset.dy;
@@ -246,10 +248,11 @@ class Snake extends SnakeComponent {
       if (collisionPoint != null) {
         body.add(head.clone());
       } else {
-        body.add(
-            SnakeJoint(Offset(offset.dx, canvasSize.height), head.direction));
-        body.add(SnakeJoint(
-            Offset(offset.dx, canvasSize.height + overflowY), head.direction));
+        body
+          ..add(
+              SnakeJoint(Offset(offset.dx, canvasSize.height), head.direction))
+          ..add(SnakeJoint(Offset(offset.dx, canvasSize.height + overflowY),
+              head.direction));
       }
     }
   }

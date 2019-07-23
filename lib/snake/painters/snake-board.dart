@@ -6,21 +6,20 @@ class SnakeBoard extends CustomPainter {
   final List<SnakeComponent> walls;
   final List<SnakeComponent> decorations;
 
-  final gridPaint = Paint();
-  final wallPaint = Paint();
+  final gridPaint = Paint()
+    ..style = PaintingStyle.stroke
+    ..strokeCap = StrokeCap.round
+    ..isAntiAlias = true
+    ..strokeJoin = StrokeJoin.round
+    ..color = Colors.white.withOpacity(0.03)
+    ..strokeWidth = 1;
 
-  SnakeBoard({@required this.grid, this.walls, this.decorations}) : super() {
-    wallPaint.style = PaintingStyle.fill;
-    wallPaint.isAntiAlias = true;
-    wallPaint.color = Colors.brown;
+  final wallPaint = Paint()
+    ..style = PaintingStyle.fill
+    ..isAntiAlias = true
+    ..color = Colors.brown;
 
-    gridPaint.style = PaintingStyle.stroke;
-    gridPaint.strokeCap = StrokeCap.round;
-    gridPaint.isAntiAlias = true;
-    gridPaint.strokeJoin = StrokeJoin.round;
-    gridPaint.color = Colors.white.withOpacity(0.03);
-    gridPaint.strokeWidth = 1;
-  }
+  SnakeBoard({@required this.grid, this.walls, this.decorations}) : super();
 
   @override
   void paint(Canvas canvas, Size size) {

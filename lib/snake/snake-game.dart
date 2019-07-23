@@ -11,9 +11,11 @@ class Game extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: MediaQuery.of(context).orientation == Orientation.landscape? SnakeGame(
-        size: MediaQuery.of(context).size,
-      ): null,
+      body: MediaQuery.of(context).orientation == Orientation.landscape
+          ? SnakeGame(
+              size: MediaQuery.of(context).size,
+            )
+          : null,
     );
   }
 }
@@ -171,7 +173,7 @@ class _GameSceneState extends State<GameScene>
         foodCounter = 0;
         var r = rnd.nextInt(2);
         print(r);
-        addFood( type: 1 + r);
+        addFood(type: 1 + r);
       } else {
         foodCounter--;
         addFood();
@@ -191,22 +193,20 @@ class _GameSceneState extends State<GameScene>
 
     //var x = GridInfo.shift() + GridInfo.snakeWidth /2;
     //var y = GridInfo.shift() +  GridInfo.snakeWidth /2 + (widget.gridInfo.vGridCount ~/2) * GridInfo.gridSize();
-    
+
     Food newFood;
 
     switch (type) {
       case 0:
-        newFood = SnakeFood(Offset(x, y));    
+        newFood = SnakeFood(Offset(x, y));
         break;
       case 1:
-        newFood = BonusFood(Offset(x, y));    
+        newFood = BonusFood(Offset(x, y));
         break;
       case 2:
-        newFood = ShrinkFood(Offset(x, y));    
+        newFood = ShrinkFood(Offset(x, y));
         break;
     }
-
-    
 
     while (snake.detectBodyCollision(newFood.rect) ||
         detectWallCollision(newFood.rect)) {
@@ -225,7 +225,7 @@ class _GameSceneState extends State<GameScene>
       Timer(Duration(seconds: 15), () {
         if (!(food is SnakeFood)) {
           addFood(type: 0);
-        } 
+        }
       });
     }
   }
@@ -256,8 +256,9 @@ class _GameSceneState extends State<GameScene>
 
   void initSnake({bool startAnimation = true}) {
     if (_controller != null && _controller.isAnimating) {
-      _controller.stop();
-      _controller.reset();
+      _controller
+        ..stop()
+        ..reset();
     }
 
     score = 0;

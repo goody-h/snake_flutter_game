@@ -18,25 +18,22 @@ class SnakeHead extends SnakeComponent {
 
   Path headPath;
 
-  final headPaint = Paint();
-
+  final headPaint = Paint()
+    ..style = PaintingStyle.fill
+    ..color = Colors.black
+    ..isAntiAlias = true;
 
   SnakeHead(this.joint) {
-    headPaint.style = PaintingStyle.fill;
-    headPaint.isAntiAlias = true;
-    headPaint.color = Colors.black;
-
     changeDirection = joint.direction;
 
     _buildSnakeHead(0);
   }
 
   void beginChangeDirection(SnakeDirection newDirection, double value) {
-
-      directionChangeOffset = value;
-      startAngle = turnAngle;
-      endAngle = _getEndAngle();
-      changeDirection = newDirection;
+    directionChangeOffset = value;
+    startAngle = turnAngle;
+    endAngle = _getEndAngle();
+    changeDirection = newDirection;
   }
 
   void updateJoint(SnakeJoint newJoint, double animationValue) {
@@ -46,10 +43,9 @@ class SnakeHead extends SnakeComponent {
 
   void resetHead() {
     turnAngle = 0;
-      startAngle = 0;
-      endAngle = 0;
+    startAngle = 0;
+    endAngle = 0;
   }
-
 
   double _getEndAngle() {
     final angle =
@@ -90,19 +86,13 @@ class SnakeHead extends SnakeComponent {
     headPath = head;
   }
 
-  Offset _rotatePoint(double angle, Offset point) {
-    final rad = angle * pi / 180;
+  Offset _rotatePoint(double angleInDeg, Offset point) {
+    final rad = angleInDeg * pi / 180;
     return MatrixUtils.transformPoint(Matrix4.rotationZ(rad), point);
   }
-/*
-  Rect getHeadRect() {
-    final headCenter = joint.clone().extendPosition(snakeWidth);
-    return headCenter.getRect(headCenter.clone().extendPosition(snakeWidth / 4), snakeWidth);
-  }
-*/
+
   @override
   void drawComponent(Canvas canvas, {Paint paint}) {
     canvas.drawPath(headPath, headPaint);
   }
-
 }
